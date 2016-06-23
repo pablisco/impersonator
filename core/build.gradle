@@ -1,0 +1,18 @@
+apply plugin: 'groovy'
+
+repositories {
+    mavenCentral()
+}
+
+//compileGroovy {
+//    groovyOptions.configurationScript = file("config.groovy")
+//}
+
+dependencies {
+    compile 'org.codehaus.groovy:groovy:2.4.6'
+    compile 'org.javassist:javassist:3.20.0-GA'
+    testCompile 'org.spockframework:spock-core:1.0-groovy-2.4'
+//    testCompile 'org.codehaus.groovy:groovy-all:2.4.6'
+//    testCompile 'cglib:cglib-nodep:3.1'
+//    testCompile 'org.objenesis:objenesis:2.2'
+}
