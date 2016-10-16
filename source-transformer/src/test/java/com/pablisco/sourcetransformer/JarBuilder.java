@@ -29,7 +29,7 @@ class JarBuilder implements Closeable {
         this(jarPath, defaultManifest());
     }
 
-    private JarBuilder(Path jarPath, Manifest manifest) throws IOException {
+    JarBuilder(Path jarPath, Manifest manifest) throws IOException {
         if (Files.exists(jarPath)) {
             Path tmpPath = moveJarToTempLocation(jarPath);
             JarInputStream tmpJarStream = new JarInputStream(Files.newInputStream(tmpPath));

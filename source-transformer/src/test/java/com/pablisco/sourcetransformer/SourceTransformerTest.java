@@ -33,7 +33,7 @@ public class SourceTransformerTest {
 
         SourceTransformer transformer = new SourceTransformer();
 
-        transformer.tranform(originalJarPath).to(transformedJarPath);
+        transformer.transform(originalJarPath).to(transformedJarPath);
 
         URLClassLoader classLoader = new URLClassLoader(new URL[]{ transformedJarPath.toUri().toURL() }, null);
 
