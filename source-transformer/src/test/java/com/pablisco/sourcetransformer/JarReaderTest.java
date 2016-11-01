@@ -51,12 +51,6 @@ public class JarReaderTest {
         assertThat(results).haveExactly(1, classWithName("com.example.Example3"));
     }
 
-    @Test
-    public void shouldFail_whenClassNotFound() throws Exception {
-
-
-    }
-
     private Condition<Class<?>> classWithName(final String typeName) {
         return new Condition<Class<?>>() {
             @Override

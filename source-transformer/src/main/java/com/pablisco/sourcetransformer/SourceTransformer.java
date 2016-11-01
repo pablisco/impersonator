@@ -1,9 +1,13 @@
 package com.pablisco.sourcetransformer;
 
+import net.bytebuddy.ByteBuddy;
+import net.bytebuddy.dynamic.DynamicType;
+import net.bytebuddy.implementation.FixedValue;
+import net.bytebuddy.matcher.ElementMatchers;
+
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
+import java.util.Set;
 
 public class SourceTransformer {
 
@@ -18,8 +22,18 @@ public class SourceTransformer {
             this.source = source;
         }
 
-        public void to(Path target) throws IOException {
-            Files.copy(source, target, StandardCopyOption.REPLACE_EXISTING);
+        public void to(Path target) throws IOException, ClassNotFoundException {
+            JarReader jarReader = new JarReader();
+            JarBuilder jarBuilder = new JarBuilder(target);
+            Set<Class<?>> types = jarReader.read(source);
+            for (Class<?> type : types) {
+                DynamicType.Builder<?> modifiedType = new ByteBuddy()
+                        .redefine(type)
+                        .method(ElementMatchers.isDeclaredBy(type))
+                        .intercept(FixedValue.nullValue());
+                jarBuilder.append(modifiedType.make());
+            }
+            jarBuilder.close();
         }
     }
 
