@@ -8,5 +8,11 @@ This allows to have static, final and super methods to be used as part of tests 
 
     apply plugin: 'com.pablisco.impersonator'
     
-    dependencies
-    testCompile impersonate('com.groupid:dependency:1.2.3')
+    // ...
+    
+    dependencies {
+        
+        // ...
+        
+        testCompile impersonate('com.groupid:dependency:1.2.3')
+    }
