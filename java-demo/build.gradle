@@ -1,0 +1,18 @@
+apply plugin: 'java'
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+}
+
+apply plugin: 'com.pablisco.impersonator'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile impersonate(project(':evil-library'))
+    testCompile 'junit:junit:4.12'
+}

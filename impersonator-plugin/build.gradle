@@ -1,0 +1,40 @@
+apply plugin: 'kotlin'
+apply plugin: 'maven'
+
+buildscript{
+    repositories {
+        mavenCentral()
+    }
+    ext.kotlin_version = '1.0.6'
+    configure([repositories, project.repositories]) {
+        maven { url 'https://repo.gradle.org/gradle/repo' }
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+group='com.pablisco.impersonator'
+version='0.1'
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: uri("$rootDir/repo"))
+        }
+    }
+}
+
+
+dependencies {
+    compile gradleApi()
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    compile "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+    testCompile 'junit:junit:4.12'
+}
+repositories {
+    mavenCentral()
+}
+sourceSets {
+    main.java.srcDirs += 'src/main/kotlin'
+}
