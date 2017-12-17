@@ -1,4 +1,6 @@
 package com.pablisco.impersonator
 
-class Impersonate {
-}
+@Target(AnnotationTarget.CLASS)
+@Retention(AnnotationRetention.SOURCE)
+@MustBeDocumented
+annotation class Impersonate

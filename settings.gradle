@@ -1,2 +1,2 @@
-include ':app', ':core', ':source-transformer', 'evil-library', 'good-library', 'java-demo', 'impersonator-plugin'
+include ':impersonator'
 
